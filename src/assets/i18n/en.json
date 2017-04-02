@@ -1,0 +1,13 @@
+{
+  "BACK_BUTTON_TEXT" : "Back",
+
+  "NAME": "Name",
+  "EMAIL": "Email",
+  "USERNAME": "Username",
+  "PASSWORD": "Password",
+  "LOGIN": "Sign in",
+
+  "LOGIN_TITLE": "Login OPAS",
+  "LOGIN_BUTTON": "Login"
+
+}

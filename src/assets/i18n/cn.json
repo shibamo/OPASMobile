@@ -1,0 +1,12 @@
+{
+  "BACK_BUTTON_TEXT" : "回退",
+
+  "NAME": "名称",
+  "EMAIL": "电子邮件",
+  "USERNAME": "用户名",
+  "PASSWORD": "密码",
+  "LOGIN": "登录",
+
+  "LOGIN_TITLE": "登录OPAS",
+  "LOGIN_BUTTON": "登 录"
+}
