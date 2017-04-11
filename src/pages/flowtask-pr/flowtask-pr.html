@@ -68,32 +68,41 @@
     </ion-item>
   </ion-list>
 
-  <ion-list *ngSwitchCase="'operation'">
-    <ion-item>
-      <ion-label stacked>{{'CHOOSE_FLOW_CONNECTION' | translate}}</ion-label>
-      <ion-select 
-      [(ngModel)]="purchaseReqData.flowDocumentData.selectedConnectionGuid" 
-      (ionChange)="selectedConnectionChanged($event)" >
-        <ion-option *ngFor="let item of purchaseReqData.flowDocumentData.sessionData.availableFlowConnections" value="{{item.connection.guid}}">{{item.connection.name}}</ion-option>
-      </ion-select>
-    </ion-item>
+  <div *ngSwitchCase="'operation'">
+    <ion-list >
+      <ion-item>
+        <ion-label stacked>{{'CHOOSE_FLOW_CONNECTION' | translate}}</ion-label>
+        <ion-select 
+        [(ngModel)]="purchaseReqData.flowDocumentData.selectedConnectionGuid" 
+        (ionChange)="selectedConnectionChanged($event)" >
+          <ion-option *ngFor="let item of purchaseReqData.flowDocumentData.sessionData.availableFlowConnections" value="{{item.connection.guid}}">{{item.connection.name}}</ion-option>
+        </ion-select>
+      </ion-item>
 
-    <ion-item>
-      <ion-label stacked>{{'CHOOSE_TO_NODE_ROLE' | translate}}</ion-label>
-      <ion-select 
-        [(ngModel)]="purchaseReqData.flowDocumentData.selectedPaticipantGuid">
-        <ion-option *ngFor="let item of potentialPaticipants" value="{{item.PaticipantObj.guid}}">{{item.PaticipantObj.name}}</ion-option>
-      </ion-select>
-    </ion-item>
+      <ion-item>
+        <ion-label stacked>{{'CHOOSE_TO_NODE_ROLE' | translate}}</ion-label>
+        <ion-select 
+          [(ngModel)]="purchaseReqData.flowDocumentData.selectedPaticipantGuid"
+          (ionChange)="selectedRoleChanged($event)">
+          <ion-option *ngFor="let item of potentialPaticipants" value="{{item.PaticipantObj.guid}}">{{item.PaticipantObj.name}}</ion-option>
+        </ion-select>
+      </ion-item>
 
-    <ion-item [(ngModel)]="purchaseReqData.flowDocumentData.remarkOfAprrover">
-      <ion-label stacked>{{'REMARK_OF_APPROVER' | translate}}</ion-label>
-      <ion-textarea></ion-textarea>
-    </ion-item>
+      <ion-item [(ngModel)]="purchaseReqData.flowDocumentData.remarkOfAprrover">
+        <ion-label stacked>{{'REMARK_OF_APPROVER' | translate}}</ion-label>
+        <ion-textarea></ion-textarea>
+      </ion-item>
 
-    <!--<ion-item>-->
-      <button ion-button round (click)="onSubmitExamineFlowAction()">{{'SUBMIT_BUTTON' | translate}}</button>
-      <button ion-button round color="danger" (click)="onAskSubmitRejectToStartFlowAction()">{{'REJECT_BUTTON' | translate}}</button>
-    <!--</ion-item>-->
-  </ion-list>  
+    </ion-list>
+      <button ion-button round 
+      [disabled]="!isValidForSubmitExamineFlowAction"
+      (click)="onSubmitExamineFlowAction()">
+      {{'SUBMIT_BUTTON' | translate}}
+      </button>
+
+      <button ion-button round color="danger" 
+      (click)="onAskSubmitRejectToStartFlowAction()">
+      {{'REJECT_BUTTON' | translate}}
+      </button>
+  </div>  
 </ion-content>

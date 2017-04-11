@@ -20,7 +20,8 @@ export class FlowtasksPage {
   {
   }
 
-  ionViewDidLoad() {
+  //ionViewDidLoad() {
+  ionViewWillEnter(){
     let loading = this.loadingController.create({
       content: 'Please wait...'
     });

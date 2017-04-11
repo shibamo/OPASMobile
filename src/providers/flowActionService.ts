@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 import { Storage } from '@ionic/storage';
 
-import { FlowDocumentData } from '../models/BizObjects';
+//import { FlowDocumentData } from '../models/BizObjects';
 import { UserService } from './userService';
 
 @Injectable()
@@ -16,18 +16,32 @@ export class FlowActionService {
     public userService: UserService, public storage: Storage) {
   }
 
-  submitExamineFlowAction(data: FlowDocumentData, nextFlowActionPath :string) 
+  submitExamineFlowAction(data: any, actionPath :string) 
   : Promise<[boolean, string]>{
     let headers = new Headers({ 
         'Authentication-Info': this.userService._authenticationToken });
     let options = new RequestOptions({ headers: headers });
-
-    return this.api.post(nextFlowActionPath, null, options).toPromise()
+    
+    return this.api.post(actionPath, {docJson: JSON.stringify(data)}, options).toPromise()
     .then(()=>{return [true,""];})
     .catch(reason=>{
       console.error(reason);
       return [false,reason.toString()];
     });
-    
   }
+
+  submitRejectToStartFlowAction(data: any, actionPath :string)
+  : Promise<[boolean, string]>{
+    let headers = new Headers({ 
+        'Authentication-Info': this.userService._authenticationToken });
+    let options = new RequestOptions({ headers: headers });
+    
+    return this.api.post(actionPath, {docJson: JSON.stringify(data)}, options).toPromise()
+    .then(()=>{return [true,""];})
+    .catch(reason=>{
+      console.error(reason);
+      return [false,reason.toString()];
+    });
+  }
+
 }
