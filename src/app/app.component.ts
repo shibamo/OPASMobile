@@ -8,7 +8,10 @@ import { TranslateService } from 'ng2-translate/ng2-translate';
 import { Page1 } from '../pages/page1/page1';
 import { Page2 } from '../pages/page2/page2';
 import { LoginPage } from '../pages/login/login';
+import { FlowtasksPage } from '../pages/flowtasks/flowtasks';
 
+import { UserService } from '../providers/userService';
+import { FlowTaskService } from '../providers/flowtaskService';
 
 @Component({
   templateUrl: 'app.html'
@@ -20,13 +23,22 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  loginPage: any = {title: 'Login to OPAS',  component:LoginPage};
+  loginPage: any = {
+    title: 'Login to OPAS',  component:LoginPage};
+  flowtasksPage: any = {
+    title: 'Flow Tasks',  component:FlowtasksPage};
 
   translator: TranslateService;
   currentLanguage: string;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,
-  translate: TranslateService,) {
+  constructor(
+    public platform: Platform, 
+    public statusBar: StatusBar, 
+    public splashScreen: SplashScreen,  
+    translate: TranslateService,
+    public userService: UserService,
+    public flowTaskService: FlowTaskService) 
+  {
     this.initializeApp();
 
     // Set the default language for translation strings, and the current language.
@@ -49,6 +61,10 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+
+      this.userService.getStoredState();
+      // this.flowTaskService.getTasks(true);
+
     });
   }
 
@@ -62,5 +78,9 @@ export class MyApp {
     this.currentLanguage = (this.currentLanguage== 'en'?  'cn' : 'en');
     this.translator.use(this.currentLanguage);
     
+  }
+
+  getTasks(){
+    this.flowTaskService.getTasks(true);
   }
 }

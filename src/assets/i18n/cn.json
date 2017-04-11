@@ -6,7 +6,30 @@
   "USERNAME": "用户名",
   "PASSWORD": "密码",
   "LOGIN": "登录",
+  "FLOW_TASK": "流程任务",
+  "FORM": "文档",
+  "FILES": "文件",
+  "OPERATION": "操作",
+  "CHOOSE_FLOW_CONNECTION": "请选择下一步操作",
+  "CHOOSE_TO_NODE_ROLE": "请选择下一步操作的执行者",
 
   "LOGIN_TITLE": "登录OPAS",
-  "LOGIN_BUTTON": "登 录"
+  "LOGIN_BUTTON": "登 录",
+  "SUBMIT_BUTTON": "提 交",
+  "REJECT_BUTTON": "拒 绝",
+  "REMARK_OF_APPROVER": "审批意见",
+
+  "PURCHASE_REQUISITION": "采购申请",
+  "ITEM_TYPE": "项目类型",
+  "ESTIMATED_COST": "预计费用",
+
+  "DOCUMENT_NO": "编号",
+  "DEPARTMENT": "部门",
+  "COSTCENTER": "成本中心",
+  "IS_FIRSTBUY": "首次购买?",
+  "REASON": "原因",
+  "DESCRIPTION": "说明",
+  "ESTIMATED_COST_IN_RMB": "预计费用(人民币)",
+
+  "DETAIL_TABLE": "明细表"
 }

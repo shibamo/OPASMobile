@@ -13,6 +13,9 @@
       <button menuClose ion-item (click)="openPage(loginPage)">
         Login
       </button>
+      <button menuClose ion-item (click)="openPage(flowtasksPage)">
+        获取任务
+      </button>      
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
         {{p.title}}
       </button>

@@ -6,8 +6,32 @@
   "USERNAME": "Username",
   "PASSWORD": "Password",
   "LOGIN": "Sign in",
+  "FLOW_TASK": "Flow Tasks",
+  "FORM": "Form",
+  "FILES": "Files",
+  "OPERATION": "Operation",
+  "CHOOSE_FLOW_CONNECTION": "Choose next step",
+  "CHOOSE_TO_NODE_ROLE": "Choose owner of next step task",
+
 
   "LOGIN_TITLE": "Login OPAS",
-  "LOGIN_BUTTON": "Login"
+  "LOGIN_BUTTON": "Login",
+  "SUBMIT_BUTTON": "Submit",
+  "REJECT_BUTTON": "Reject",
+  "REMARK_OF_APPROVER": "Remark",
 
+  "PURCHASE_REQUISITION": "Purchase Requisition",
+  "ITEM_TYPE": "Item Type",
+  "ESTIMATED_COST": "Estimated_Cost",
+
+
+  "DOCUMENT_NO": "Document No",
+  "DEPARTMENT": "Department",
+  "COSTCENTER": "Cost Center",
+  "IS_FIRSTBUY": "Is FirstBuy?",
+  "REASON": "Reason",
+  "DESCRIPTION": "Description",
+  "ESTIMATED_COST_IN_RMB": "Estimated Cost In RMB",
+
+  "DETAIL_TABLE": "Details"
 }

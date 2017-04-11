@@ -4,7 +4,7 @@ import { NavController, ToastController } from 'ionic-angular';
 import { TranslateService } from 'ng2-translate/ng2-translate';
 
 import { Page1 } from '../page1/page1';
-import { User } from '../../providers/user';
+import { UserService } from '../../providers/userService';
 
 @Component({
   selector: 'page-login',
@@ -15,7 +15,7 @@ export class LoginPage {
   // If you're using the username field with or without email, make
   // sure to add it to the type
   account: {username: string, password: string} = {
-    username: 'zhang3',
+    username: 'li4',
     password: '111111'
   };
 
@@ -23,7 +23,7 @@ export class LoginPage {
   private loginErrorString: string;
 
   constructor(public navCtrl: NavController,
-              public user: User,
+              public user: UserService,
               public toastCtrl: ToastController,
               public translateService: TranslateService) {
 

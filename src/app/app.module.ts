@@ -8,12 +8,18 @@ import { MyApp } from './app.component';
 import { Page1 } from '../pages/page1/page1';
 import { Page2 } from '../pages/page2/page2';
 import { LoginPage } from '../pages/login/login';
+import { FlowtasksPage } from '../pages/flowtasks/flowtasks';
+import { FlowtaskPrPage } from '../pages/flowtask-pr/flowtask-pr';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { User } from '../providers/user';
+import { UserService } from '../providers/userService';
 import { Api } from '../providers/api';
+import { FlowTaskService} from '../providers/flowtaskService';
+import { FlowActionService} from '../providers/flowActionService';
+import { AttachService } from '../providers/attachService';
+import { PurchaseReqService } from '../providers/purchaseReqService';
 
 export function createTranslateLoader(http: Http) {
   return new TranslateStaticLoader(http, './assets/i18n', '.json');
@@ -24,7 +30,9 @@ export function createTranslateLoader(http: Http) {
     MyApp,
     Page1,
     Page2,
-    LoginPage
+    LoginPage,
+    FlowtasksPage,
+    FlowtaskPrPage,
   ],
   imports: [
     IonicModule.forRoot(MyApp,{
@@ -47,14 +55,20 @@ export function createTranslateLoader(http: Http) {
     MyApp,
     Page1,
     Page2,
-    LoginPage
+    LoginPage,
+    FlowtasksPage,
+    FlowtaskPrPage,
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    User,
+    UserService,
     Api,
+    FlowTaskService,
+    FlowActionService,
+    AttachService,
+    PurchaseReqService,
   ]
 })
 export class AppModule {}

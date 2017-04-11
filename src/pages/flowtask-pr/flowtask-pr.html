@@ -1,0 +1,99 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{'PURCHASE_REQUISITION' | translate}}</ion-title>
+  </ion-navbar>
+
+  <ion-segment [(ngModel)]="workArea">
+    <ion-segment-button value="form">
+      {{'FORM' | translate}}
+    </ion-segment-button>
+    <ion-segment-button value="files">
+      {{'FILES' | translate}}
+    </ion-segment-button>
+    <ion-segment-button value="operation">
+      {{'OPERATION' | translate}}
+    </ion-segment-button>    
+  </ion-segment>
+
+</ion-header>
+
+<ion-content padding [ngSwitch]="workArea">
+  <ion-list *ngSwitchCase="'form'">
+    <ion-item>
+      <h2>{{'DOCUMENT_NO' | translate}}</h2>
+      <h3>{{purchaseReqData.documentNo}}</h3>
+    </ion-item>
+    <ion-item>
+      <h2>{{'DEPARTMENT' | translate}}</h2>
+      <h3>{{purchaseReqData.departmentName}}</h3>
+    </ion-item>
+    <ion-item>
+      <h2>{{'COSTCENTER' | translate}}</h2>
+      <h3>{{purchaseReqData.costCenterName}}</h3>
+    </ion-item>
+    <ion-item>
+      <h2>{{'REASON' | translate}}</h2>
+      <h3>{{purchaseReqData.reason}}</h3>
+    </ion-item>
+    <ion-item>
+      <h2>{{'DESCRIPTION' | translate}}</h2>
+      <h3>{{purchaseReqData.description}}</h3>
+    </ion-item>
+    <ion-item>
+      <h2>{{'ESTIMATED_COST_IN_RMB' | translate}}</h2>
+      <h3>{{purchaseReqData.estimatedCostInRMB| number : '1.2-2'}}</h3>
+    </ion-item>
+    <ion-item>
+      <h2>{{'IS_FIRSTBUY' | translate}}</h2>
+      <h3>{{purchaseReqData.isFirstBuy}}</h3>
+    </ion-item>
+
+    <ion-card *ngFor="let item of purchaseReqData.details">
+      <ion-card-header>
+        {{item.itemName}}
+      </ion-card-header>
+      <ion-card-content>
+        <h4>{{'ITEM_TYPE' | translate}} :  {{item.itemTypeName}}</h4>
+        <h4>{{'ESTIMATED_COST' | translate}} : {{item.estimatedCost | number : '1.2-2'}}</h4>
+        <h4>{{'DESCRIPTION' | translate}} : {{item.description}}</h4>
+      </ion-card-content>
+    </ion-card>
+
+  </ion-list>
+
+  <ion-list *ngSwitchCase="'files'">
+    <ion-item *ngFor="let item of purchaseReqData.flowDocumentData.sessionData.flowDocumentAttachFiles">
+      <a href="{{attachService.urlPrefix + item.guid}}">{{item.name}}</a>
+    </ion-item>
+  </ion-list>
+
+  <ion-list *ngSwitchCase="'operation'">
+    <ion-item>
+      <ion-label stacked>{{'CHOOSE_FLOW_CONNECTION' | translate}}</ion-label>
+      <ion-select 
+      [(ngModel)]="purchaseReqData.flowDocumentData.selectedConnectionGuid" 
+      (ionChange)="selectedConnectionChanged($event)" >
+        <ion-option *ngFor="let item of purchaseReqData.flowDocumentData.sessionData.availableFlowConnections" value="{{item.connection.guid}}">{{item.connection.name}}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>{{'CHOOSE_TO_NODE_ROLE' | translate}}</ion-label>
+      <ion-select 
+        [(ngModel)]="purchaseReqData.flowDocumentData.selectedPaticipantGuid">
+        <ion-option *ngFor="let item of potentialPaticipants" value="{{item.PaticipantObj.guid}}">{{item.PaticipantObj.name}}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item [(ngModel)]="purchaseReqData.flowDocumentData.remarkOfAprrover">
+      <ion-label stacked>{{'REMARK_OF_APPROVER' | translate}}</ion-label>
+      <ion-textarea></ion-textarea>
+    </ion-item>
+
+    <!--<ion-item>-->
+      <button ion-button round (click)="onSubmitExamineFlowAction()">{{'SUBMIT_BUTTON' | translate}}</button>
+      <button ion-button round color="danger" (click)="onAskSubmitRejectToStartFlowAction()">{{'REJECT_BUTTON' | translate}}</button>
+    <!--</ion-item>-->
+  </ion-list>  
+</ion-content>
