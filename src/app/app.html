@@ -11,10 +11,10 @@
         English-中文
       </button>
       <button menuClose ion-item (click)="openPage(loginPage)">
-        Login
+        {{"LOGIN" | translate}}
       </button>
       <button menuClose ion-item (click)="openPage(flowtasksPage)">
-        获取任务
+        {{"FLOW_TASK" | translate}}
       </button>      
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
         {{p.title}}

@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams,LoadingController } from 'ionic-angular';
 import { Observable } from 'rxjs';
+import { TranslateService } from 'ng2-translate/ng2-translate';
 
 import { FlowTaskData } from '../../models/BasicObjects';
 import { FlowTaskService } from '../../providers/flowtaskService';
 import { FlowtaskPrPage } from '../flowtask-pr/flowtask-pr';
+import { FlowtaskPoPage } from '../flowtask-po/flowtask-po';
 
 @Component({
   selector: 'page-flowtasks',
@@ -15,15 +17,16 @@ export class FlowtasksPage {
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
+    public translateService: TranslateService,
     public loadingController: LoadingController,
     public flowTaskService: FlowTaskService,) 
   {
   }
 
   //ionViewDidLoad() {
-  ionViewWillEnter(){
+  ionViewWillEnter() { // Each time this page activated will be called
     let loading = this.loadingController.create({
-      content: 'Please wait...'
+      content: this.translateService.instant("PLEASE_WAIT")
     });
     loading.present();
     this.flowTaskService.getTasks(true).toPromise()
@@ -34,7 +37,20 @@ export class FlowtasksPage {
   }
 
   itemTapped(event, item) {
-    this.navCtrl.push(FlowtaskPrPage, {item: item});
+    switch(item.documentTypeName){
+      case "PR":
+        this.navCtrl.push(FlowtaskPrPage, {item: item});
+        break;
+      case "PO":
+        this.navCtrl.push(FlowtaskPoPage, {item: item});
+        break;
+      case "GR":
+      break;
+      case "PM":
+      break;
+      default:
+      
+    }
   }
 
 }

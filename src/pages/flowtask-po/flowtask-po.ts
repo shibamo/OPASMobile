@@ -5,21 +5,21 @@ import { TranslateService } from 'ng2-translate/ng2-translate';
 
 import { FlowTaskData } from '../../models/BasicObjects';
 import { Paticipant }  from '../../models/FlowDefObjects';
-import { PurchaseReqData }  from '../../models/BizObjects';
-
+import { PurchaseOrderData }  from '../../models/BizObjects';
 
 import { Api } from '../../providers/api';
 import { AttachService } from '../../providers/attachService';
-import { PurchaseReqService } from '../../providers/purchaseReqService';
+import { PurchaseOrderService } from '../../providers/purchaseOrderService';
 import { FlowActionService } from '../../providers/flowActionService';
 
+
 @Component({
-  selector: 'page-flowtask-pr',
-  templateUrl: 'flowtask-pr.html'
+  selector: 'page-flowtask-po',
+  templateUrl: 'flowtask-po.html'
 })
-export class FlowtaskPrPage {
+export class FlowtaskPoPage {
   task : FlowTaskData;
-  purchaseReqData: PurchaseReqData;
+  purchaseOrderData: PurchaseOrderData;
   workArea: string;
   potentialPaticipants: Paticipant[];
   isValidForSubmitExamineFlowAction: boolean = false;
@@ -32,7 +32,7 @@ export class FlowtaskPrPage {
     public api: Api,
     public translateService: TranslateService,
     public attachService: AttachService,
-    public purchaseReqService: PurchaseReqService,
+    public purchaseOrderService: PurchaseOrderService,
     public flowActionService: FlowActionService) 
   {
   }
@@ -45,10 +45,10 @@ export class FlowtaskPrPage {
     });
     loading.present();
 
-    this.purchaseReqService.getBizObjForExamine(this.task.bizDocumentGuid,
+    this.purchaseOrderService.getBizObjForExamine(this.task.bizDocumentGuid,
     this.task.flowTaskForUserId).toPromise()
     .then(value=>{
-      this.purchaseReqData = value;
+      this.purchaseOrderData = value;
       console.log(value);
       this.workArea = "form";
       loading.dismiss();
@@ -57,7 +57,7 @@ export class FlowtaskPrPage {
 
   selectedConnectionChanged($event){
     let connections = 
-      this.purchaseReqData.flowDocumentData.sessionData.availableFlowConnections;
+      this.purchaseOrderData.flowDocumentData.sessionData.availableFlowConnections;
     let connection = connections.find(obj=>obj.connection.guid==$event);
     if(connection.toNode.type=="st-autoActivity"){
       this.isValidForSubmitExamineFlowAction = true;
@@ -65,7 +65,7 @@ export class FlowtaskPrPage {
       this.isValidForSubmitExamineFlowAction = false;
     }
     this.potentialPaticipants = connection.toNode.roles;
-    this.purchaseReqData.flowDocumentData.selectedPaticipantGuid = null;
+    this.purchaseOrderData.flowDocumentData.selectedPaticipantGuid = null;
   }
 
   selectedRoleChanged($event){
@@ -74,7 +74,7 @@ export class FlowtaskPrPage {
 
   onSubmitExamineFlowAction(){
     let submitData = {}; 
-    Object.assign(submitData,this.purchaseReqData.flowDocumentData, {purchaseReqId: this.purchaseReqData.purchaseReqId});
+    Object.assign(submitData,this.purchaseOrderData.flowDocumentData, {purchaseReqId: this.purchaseOrderData.purchaseOrderId});
     submitData["sessionData"]=undefined;
 
     this.onSubmitToBackEnd(submitData,this.api.PR_NEXT_FLOW_ACTION_PATH);
@@ -83,7 +83,7 @@ export class FlowtaskPrPage {
   onAskSubmitRejectToStartFlowAction(){
 
     let submitData = {}; 
-    Object.assign(submitData,this.purchaseReqData.flowDocumentData, {purchaseReqId: this.purchaseReqData.purchaseReqId});
+    Object.assign(submitData,this.purchaseOrderData.flowDocumentData, {purchaseReqId: this.purchaseOrderData.purchaseOrderId});
     submitData["sessionData"]=undefined;
 
     this.onSubmitToBackEnd(submitData, this.api.PR_REJECT_TO_START_FLOW_ACTION_PATH);
@@ -98,8 +98,8 @@ export class FlowtaskPrPage {
     let submitData = {}; 
     Object.assign(
       submitData,
-      this.purchaseReqData.flowDocumentData, 
-      {purchaseReqId: this.purchaseReqData.purchaseReqId});
+      this.purchaseOrderData.flowDocumentData, 
+      {purchaseReqId: this.purchaseOrderData.purchaseOrderId});
     submitData["sessionData"]=undefined; // 删除前台临时使用的数据
 
     this.flowActionService.submitFlowAction(
@@ -124,4 +124,5 @@ export class FlowtaskPrPage {
       }
     });
   }
+
 }

@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{'PURCHASE_REQUISITION' | translate}}</ion-title>
+    <ion-title>{{'PURCHASE_ORDER' | translate}}</ion-title>
   </ion-navbar>
 
   <ion-segment [(ngModel)]="workArea">
@@ -22,40 +22,51 @@
   <ion-list *ngSwitchCase="'form'">
     <ion-item>
       <h3>{{'DOCUMENT_NO' | translate}}</h3>
-      <h2>{{purchaseReqData.documentNo}}</h2>
-    </ion-item>
-    <ion-item>
-      <h3>{{'DEPARTMENT' | translate}}</h3>
-      <h2>{{purchaseReqData.departmentName}}</h2>
-    </ion-item>
-    <ion-item>
-      <h3>{{'COSTCENTER' | translate}}</h3>
-      <h2>{{purchaseReqData.costCenterName}}</h2>
-    </ion-item>
-    <ion-item>
-      <h3>{{'REASON' | translate}}</h3>
-      <h2>{{purchaseReqData.reason}}</h2>
-    </ion-item>
-    <ion-item>
-      <h3>{{'DESCRIPTION' | translate}}</h3>
-      <h2>{{purchaseReqData.description}}</h2>
-    </ion-item>
-    <ion-item>
-      <h3>{{'ESTIMATED_COST_IN_RMB' | translate}}</h3>
-      <h2>{{purchaseReqData.estimatedCostInRMB| number : '1.2-2'}}</h2>
-    </ion-item>
-    <ion-item>
-      <h3>{{'IS_FIRSTBUY' | translate}}</h3>
-      <h2>{{purchaseReqData.isFirstBuy}}</h2>
+      <h2>{{purchaseOrderData.documentNo}}</h2>
     </ion-item>
 
-    <ion-card *ngFor="let item of purchaseReqData.details">
+    <ion-item>
+      <h3>{{'DEPARTMENT' | translate}}</h3>
+      <h2>{{purchaseOrderData.departmentName}}</h2>
+    </ion-item>
+
+    <ion-item>
+      <h3>{{'COSTCENTER' | translate}}</h3>
+      <h2>{{purchaseOrderData.costCenterName}}</h2>
+    </ion-item>
+
+    <ion-item>
+      <h3>{{'CURRENCY_TYPE' | translate}}</h3>
+      <h2>{{purchaseOrderData.currencyTypeName}}</h2>
+    </ion-item>    
+
+    <ion-item>
+      <h3>{{'TOTAL_AMOUNT_IN_RMB' | translate}}</h3>
+      <h2>{{purchaseOrderData.totalAmountInRMB | number : '1.2-2'}}</h2>
+    </ion-item>
+     
+    <ion-item>
+      <h3>{{'REASON' | translate}}</h3>
+      <h2>{{purchaseOrderData.reason}}</h2>
+    </ion-item>
+
+    <ion-item>
+      <h3>{{'DESCRIPTION' | translate}}</h3>
+      <h2>{{purchaseOrderData.description}}</h2>
+    </ion-item>
+
+    <ion-item>
+      <h3>{{'VENDOR_NAME' | translate}}</h3>
+      <h2>{{purchaseOrderData.vendorName}}</h2>
+    </ion-item>
+
+    <ion-card *ngFor="let item of purchaseOrderData.details">
       <ion-card-header>
         {{item.itemName}}
       </ion-card-header>
       <ion-card-content>
         <h4>{{'ITEM_TYPE' | translate}} :  {{item.itemTypeName}}</h4>
-        <h4>{{'ESTIMATED_COST' | translate}} : {{item.estimatedCost | number : '1.2-2'}}</h4>
+        <h4>{{'TOTAL_AMOUNT_IN_RMB' | translate}} : {{item.amountInRMB | number : '1.2-2'}}</h4>
         <h4>{{'DESCRIPTION' | translate}} : {{item.description}}</h4>
       </ion-card-content>
     </ion-card>
@@ -63,7 +74,7 @@
   </ion-list>
 
   <ion-list *ngSwitchCase="'files'">
-    <ion-item *ngFor="let item of purchaseReqData.flowDocumentData.sessionData.flowDocumentAttachFiles">
+    <ion-item *ngFor="let item of purchaseOrderData.flowDocumentData.sessionData.flowDocumentAttachFiles">
       <a href="{{attachService.urlPrefix + item.guid}}">{{item.name}}</a>
     </ion-item>
   </ion-list>
@@ -73,22 +84,22 @@
       <ion-item>
         <ion-label stacked>{{'CHOOSE_FLOW_CONNECTION' | translate}}</ion-label>
         <ion-select 
-        [(ngModel)]="purchaseReqData.flowDocumentData.selectedConnectionGuid" 
+        [(ngModel)]="purchaseOrderData.flowDocumentData.selectedConnectionGuid" 
         (ionChange)="selectedConnectionChanged($event)" >
-          <ion-option *ngFor="let item of purchaseReqData.flowDocumentData.sessionData.availableFlowConnections" value="{{item.connection.guid}}">{{item.connection.name}}</ion-option>
+          <ion-option *ngFor="let item of purchaseOrderData.flowDocumentData.sessionData.availableFlowConnections" value="{{item.connection.guid}}">{{item.connection.name}}</ion-option>
         </ion-select>
       </ion-item>
 
       <ion-item>
         <ion-label stacked>{{'CHOOSE_TO_NODE_ROLE' | translate}}</ion-label>
         <ion-select 
-          [(ngModel)]="purchaseReqData.flowDocumentData.selectedPaticipantGuid"
+          [(ngModel)]="purchaseOrderData.flowDocumentData.selectedPaticipantGuid"
           (ionChange)="selectedRoleChanged($event)">
           <ion-option *ngFor="let item of potentialPaticipants" value="{{item.PaticipantObj.guid}}">{{item.PaticipantObj.name}}</ion-option>
         </ion-select>
       </ion-item>
 
-      <ion-item [(ngModel)]="purchaseReqData.flowDocumentData.remarkOfAprrover">
+      <ion-item [(ngModel)]="purchaseOrderData.flowDocumentData.remarkOfAprrover">
         <ion-label stacked>{{'REMARK_OF_APPROVER' | translate}}</ion-label>
         <ion-textarea></ion-textarea>
       </ion-item>

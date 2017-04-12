@@ -5,7 +5,7 @@ export interface FlowDocumentData {
   guid: string; //DocumentId
   taskGuid: string;
   flowInstanceId: number;
-  remarkOfAprrover: string,
+  remarkOfAprrover: string;
   currentActivityGuid: string;
   // 以下部分由客户端自行生成
   selectedConnectionGuid: string;
@@ -15,16 +15,14 @@ export interface FlowDocumentData {
   sessionData: {
     flowTemplateDef: string;
     availableFlowConnections: FlowDef.AvailableFlowAction[];
-    flowDocumentAttachFiles :FlowDocumentAttachFile[];
-    // 以下部分由客户端自行生成
-    NextFlowActionPath: string; // 普通流程审批结果提交路径
-    RejectToStartFlowActionPath: string, // 退回到起始状态提交路径
+    flowDocumentAttachFiles: FlowDocumentAttachFile[];
+    // 以下部分由客户端自行生成使用
     potentialPaticipants: FlowDef.Paticipant[];
     needChoosePaticipant: boolean;
   }
 }
 
-export interface FlowDocumentAttachFile{
+export interface FlowDocumentAttachFile {
   name: string;
   guid: string;
 }
@@ -59,12 +57,50 @@ export interface PurchaseReqData {
 }
 
 export interface PurchaseReqDetailData {
-  id: number,
-  guid: string,
-  lineNo: number,
-  itemTypeName: string,
-  itemName: string,
-  estimatedCost: number,
-  description: string,
+  id: number;
+  guid: string;
+  lineNo: number;
+  itemTypeName: string;
+  itemName: string;
+  estimatedCost: number;
+  description: string;
 }
 
+export interface PurchaseOrderData {
+  flowDocumentData: FlowDocumentData;
+  purchaseOrderId: number;
+  documentNo: string;
+  departmentName: string;
+  departmentNameBelongTo: string;
+  contactOfficePhone: string;
+  contactMobile: string;
+  costCenterName: string;
+  orderDate: string;
+  effectiveDate: string;
+  reason: string;
+  description: string;
+  totalAmount: string;
+  currencyTypeName: string;
+  totalAmountInRMB: string;
+  POTypeName: string;
+  vendorName: string;
+  transportTerm: string;
+  paymentTerm: string;
+  submitor: string;
+
+  // 明细项子表部分
+  details: PurchaseOrderDetailData[];
+}
+
+export interface PurchaseOrderDetailData {
+  id: number;
+  guid: string;
+  lineNo: number;
+  itemName: string;
+  description: string;
+  unitMeasure: string;
+  price: number;
+  quantity: number;
+  amount: number;
+  amountInRMB: number;
+}

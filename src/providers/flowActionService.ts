@@ -16,7 +16,7 @@ export class FlowActionService {
     public userService: UserService, public storage: Storage) {
   }
 
-  submitExamineFlowAction(data: any, actionPath :string) 
+  submitFlowAction(data: any, actionPath :string) 
   : Promise<[boolean, string]>{
     let headers = new Headers({ 
         'Authentication-Info': this.userService._authenticationToken });
@@ -29,19 +29,4 @@ export class FlowActionService {
       return [false,reason.toString()];
     });
   }
-
-  submitRejectToStartFlowAction(data: any, actionPath :string)
-  : Promise<[boolean, string]>{
-    let headers = new Headers({ 
-        'Authentication-Info': this.userService._authenticationToken });
-    let options = new RequestOptions({ headers: headers });
-    
-    return this.api.post(actionPath, {docJson: JSON.stringify(data)}, options).toPromise()
-    .then(()=>{return [true,""];})
-    .catch(reason=>{
-      console.error(reason);
-      return [false,reason.toString()];
-    });
-  }
-
 }

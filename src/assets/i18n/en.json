@@ -12,7 +12,9 @@
   "OPERATION": "Operation",
   "CHOOSE_FLOW_CONNECTION": "Choose next step",
   "CHOOSE_TO_NODE_ROLE": "Choose owner of next step task",
-
+  "PLEASE_WAIT": "Please wait...",
+  "SUCCESSFULLY_SUBMITTED": "Successfully submitted",
+  "OPERATION_FAILED": "Operation failed",
 
   "LOGIN_TITLE": "Login OPAS",
   "LOGIN_BUTTON": "Login",
@@ -23,8 +25,6 @@
   "PURCHASE_REQUISITION": "Purchase Requisition",
   "ITEM_TYPE": "Item Type",
   "ESTIMATED_COST": "Estimated_Cost",
-
-
   "DOCUMENT_NO": "Document No",
   "DEPARTMENT": "Department",
   "COSTCENTER": "Cost Center",
@@ -32,6 +32,11 @@
   "REASON": "Reason",
   "DESCRIPTION": "Description",
   "ESTIMATED_COST_IN_RMB": "Estimated Cost In RMB",
+
+  "PURCHASE_ORDER": "Purchase Order",
+  "CURRENCY_TYPE": "Currency Type",
+  "TOTAL_AMOUNT_IN_RMB": "Total Amount(RMB)",
+  "VENDOR_NAME": "Vendor Name",
 
   "DETAIL_TABLE": "Details"
 }

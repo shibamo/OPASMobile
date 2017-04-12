@@ -10,6 +10,8 @@ import { Page2 } from '../pages/page2/page2';
 import { LoginPage } from '../pages/login/login';
 import { FlowtasksPage } from '../pages/flowtasks/flowtasks';
 import { FlowtaskPrPage } from '../pages/flowtask-pr/flowtask-pr';
+import { FlowtaskPoPage } from '../pages/flowtask-po/flowtask-po';
+
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -20,6 +22,8 @@ import { FlowTaskService} from '../providers/flowtaskService';
 import { FlowActionService} from '../providers/flowActionService';
 import { AttachService } from '../providers/attachService';
 import { PurchaseReqService } from '../providers/purchaseReqService';
+import { PurchaseOrderService } from '../providers/purchaseOrderService';
+
 
 export function createTranslateLoader(http: Http) {
   return new TranslateStaticLoader(http, './assets/i18n', '.json');
@@ -33,6 +37,7 @@ export function createTranslateLoader(http: Http) {
     LoginPage,
     FlowtasksPage,
     FlowtaskPrPage,
+    FlowtaskPoPage,
   ],
   imports: [
     IonicModule.forRoot(MyApp,{
@@ -58,6 +63,7 @@ export function createTranslateLoader(http: Http) {
     LoginPage,
     FlowtasksPage,
     FlowtaskPrPage,
+    FlowtaskPoPage,
   ],
   providers: [
     StatusBar,
@@ -69,6 +75,7 @@ export function createTranslateLoader(http: Http) {
     FlowActionService,
     AttachService,
     PurchaseReqService,
+    PurchaseOrderService,
   ]
 })
 export class AppModule {}
