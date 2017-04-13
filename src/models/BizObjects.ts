@@ -87,7 +87,6 @@ export interface PurchaseOrderData {
   transportTerm: string;
   paymentTerm: string;
   submitor: string;
-
   // 明细项子表部分
   details: PurchaseOrderDetailData[];
 }
@@ -98,6 +97,59 @@ export interface PurchaseOrderDetailData {
   lineNo: number;
   itemName: string;
   description: string;
+  unitMeasure: string;
+  price: number;
+  quantity: number;
+  amount: number;
+  amountInRMB: number;
+}
+
+export interface GoodsReceivingData {
+  flowDocumentData: FlowDocumentData;
+  goodsReceivingId: number;
+  documentNo: string;
+  departmentName: string;
+  description: string;
+  totalAmount: string;
+  totalAmountInRMB: string;
+  vendorName: string;
+  submitor: string;
+  // 明细项子表部分
+  details: GoodsReceivingDetailData[];
+}
+
+export interface GoodsReceivingDetailData {
+  id: number;
+  guid: string;
+  lineNo: number;
+  itemName: string;
+  unitMeasure: string;
+  price: number;
+  quantity: number;
+  amount: number;
+  amountInRMB: number;
+}
+
+export interface PaymentData {
+  flowDocumentData: FlowDocumentData;
+  paymentId: number;
+  documentNo: string;
+  departmentName: string;
+  reason: string;
+  description: string;
+  totalAmount: string;
+  totalAmountInRMB: string;
+  vendorName: string;
+  submitor: string;
+  // 明细项子表部分
+  details: PaymentDetailData[];
+}
+
+export interface PaymentDetailData {
+  id: number;
+  guid: string;
+  lineNo: number;
+  itemName: string;
   unitMeasure: string;
   price: number;
   quantity: number;

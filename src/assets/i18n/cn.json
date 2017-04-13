@@ -1,4 +1,5 @@
 {
+  "MENU": "菜单",
   "BACK_BUTTON_TEXT" : "回退",
 
   "NAME": "名称",
@@ -22,6 +23,8 @@
   "REJECT_BUTTON": "拒 绝",
   "REMARK_OF_APPROVER": "审批意见",
 
+  "SYSTEM_SETTING": "系统设置",
+
   "PURCHASE_REQUISITION": "采购申请",
   "ITEM_TYPE": "项目类型",
   "ESTIMATED_COST": "预计费用",
@@ -37,6 +40,10 @@
   "CURRENCY_TYPE": "币种",
   "TOTAL_AMOUNT_IN_RMB": "总额(人民币)",
   "VENDOR_NAME": "供应商名",
+
+  "GOODS_RECEIVING": "收货",
+
+  "PAYMENT": "付款",
 
   "DETAIL_TABLE": "明细表"
 }

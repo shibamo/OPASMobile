@@ -7,6 +7,8 @@ import { FlowTaskData } from '../../models/BasicObjects';
 import { FlowTaskService } from '../../providers/flowtaskService';
 import { FlowtaskPrPage } from '../flowtask-pr/flowtask-pr';
 import { FlowtaskPoPage } from '../flowtask-po/flowtask-po';
+import { FlowtaskGrPage } from '../flowtask-gr/flowtask-gr';
+import { FlowtaskPmPage } from '../flowtask-pm/flowtask-pm';
 
 @Component({
   selector: 'page-flowtasks',
@@ -45,9 +47,11 @@ export class FlowtasksPage {
         this.navCtrl.push(FlowtaskPoPage, {item: item});
         break;
       case "GR":
-      break;
+        this.navCtrl.push(FlowtaskGrPage, {item: item});
+        break;
       case "PM":
-      break;
+        this.navCtrl.push(FlowtaskPmPage, {item: item});
+        break;      
       default:
       
     }

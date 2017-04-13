@@ -3,14 +3,20 @@ import { Http, RequestOptions, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Storage } from '@ionic/storage';
 
-/**
- * Api is a generic REST Api handler. Set your API url first.
- */
 @Injectable()
 export class Api {
   url: string = 'http://localhost:24544/api';
   public PR_NEXT_FLOW_ACTION_PATH = "/PR/ExamineFlowAction/" ;
   public PR_REJECT_TO_START_FLOW_ACTION_PATH = "/PR/RejectToStartFlowAction/" ;
+
+  public PO_NEXT_FLOW_ACTION_PATH = "/PO/ExamineFlowAction/" ;
+  public PO_REJECT_TO_START_FLOW_ACTION_PATH = "/PO/RejectToStartFlowAction/" ;
+
+  public GR_NEXT_FLOW_ACTION_PATH = "/GR/ExamineFlowAction/" ;
+  public GR_REJECT_TO_START_FLOW_ACTION_PATH = "/GR/RejectToStartFlowAction/" ;
+
+  public PM_NEXT_FLOW_ACTION_PATH = "/PM/ExamineFlowAction/" ;
+  public PM_REJECT_TO_START_FLOW_ACTION_PATH = "/PM/RejectToStartFlowAction/" ;
 
   constructor(public http: Http,public storage: Storage) {
   }

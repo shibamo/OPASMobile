@@ -1,4 +1,5 @@
 {
+  "MENU": "Menu",
   "BACK_BUTTON_TEXT" : "Back",
 
   "NAME": "Name",
@@ -22,6 +23,8 @@
   "REJECT_BUTTON": "Reject",
   "REMARK_OF_APPROVER": "Remark",
 
+  "SYSTEM_SETTING": "System Setting",  
+
   "PURCHASE_REQUISITION": "Purchase Requisition",
   "ITEM_TYPE": "Item Type",
   "ESTIMATED_COST": "Estimated_Cost",
@@ -37,6 +40,10 @@
   "CURRENCY_TYPE": "Currency Type",
   "TOTAL_AMOUNT_IN_RMB": "Total Amount(RMB)",
   "VENDOR_NAME": "Vendor Name",
+
+  "GOODS_RECEIVING": "Goods Receiving",
+
+  "PAYMENT": "Payment",
 
   "DETAIL_TABLE": "Details"
 }

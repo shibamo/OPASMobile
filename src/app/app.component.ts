@@ -6,8 +6,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { TranslateService } from 'ng2-translate/ng2-translate';
 
 import { Page1 } from '../pages/page1/page1';
-import { Page2 } from '../pages/page2/page2';
+//import { Page2 } from '../pages/page2/page2';
 import { LoginPage } from '../pages/login/login';
+import { SysSettingPage } from '../pages/sys-setting/sys-setting';
 import { FlowtasksPage } from '../pages/flowtasks/flowtasks';
 
 import { UserService } from '../providers/userService';
@@ -27,6 +28,8 @@ export class MyApp {
     title: 'Login to OPAS',  component:LoginPage};
   flowtasksPage: any = {
     title: 'Flow Tasks',  component:FlowtasksPage};
+  sysSettingPage: any = {
+    title: 'Flow Tasks',  component:SysSettingPage};    
 
   translator: TranslateService;
   currentLanguage: string;

@@ -1,0 +1,107 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{'GOODS_RECEIVING' | translate}}</ion-title>
+  </ion-navbar>
+
+  <ion-segment [(ngModel)]="workArea">
+    <ion-segment-button value="form">
+      {{'FORM' | translate}}
+    </ion-segment-button>
+    <ion-segment-button value="files">
+      {{'FILES' | translate}}
+    </ion-segment-button>
+    <ion-segment-button value="operation">
+      {{'OPERATION' | translate}}
+    </ion-segment-button>    
+  </ion-segment>
+
+</ion-header>
+
+<ion-content padding [ngSwitch]="workArea">
+  <ion-list *ngSwitchCase="'form'">
+    <ion-item>
+      <h3>{{'DOCUMENT_NO' | translate}}</h3>
+      <h2>{{goodsReceivingData.documentNo}}</h2>
+    </ion-item>
+
+    <ion-item>
+      <h3>{{'DEPARTMENT' | translate}}</h3>
+      <h2>{{goodsReceivingData.departmentName}}</h2>
+    </ion-item>
+
+    <ion-item>
+      <h3>{{'DESCRIPTION' | translate}}</h3>
+      <h2>{{goodsReceivingData.description}}</h2>
+    </ion-item>
+
+    <ion-item>
+      <h3>{{'TOTAL_AMOUNT_IN_RMB' | translate}}</h3>
+      <h2>{{goodsReceivingData.totalAmountInRMB | number : '1.2-2'}}</h2>
+    </ion-item>
+
+    <ion-item>
+      <h3>{{'DESCRIPTION' | translate}}</h3>
+      <h2>{{goodsReceivingData.description}}</h2>
+    </ion-item>
+
+    <ion-item>
+      <h3>{{'VENDOR_NAME' | translate}}</h3>
+      <h2>{{goodsReceivingData.vendorName}}</h2>
+    </ion-item>
+
+    <ion-card *ngFor="let item of goodsReceivingData.details">
+      <ion-card-header>
+        {{item.itemName}}
+      </ion-card-header>
+      <ion-card-content>
+        <h4>{{'TOTAL_AMOUNT_IN_RMB' | translate}} : {{item.amountInRMB | number : '1.2-2'}}</h4>
+      </ion-card-content>
+    </ion-card>
+
+  </ion-list>
+
+  <ion-list *ngSwitchCase="'files'">
+    <ion-item *ngFor="let item of goodsReceivingData.flowDocumentData.sessionData.flowDocumentAttachFiles">
+      <a href="{{attachService.urlPrefix + item.guid}}">{{item.name}}</a>
+    </ion-item>
+  </ion-list>
+
+  <div *ngSwitchCase="'operation'">
+    <ion-list >
+      <ion-item>
+        <ion-label stacked>{{'CHOOSE_FLOW_CONNECTION' | translate}}</ion-label>
+        <ion-select 
+        [(ngModel)]="goodsReceivingData.flowDocumentData.selectedConnectionGuid" 
+        (ionChange)="selectedConnectionChanged($event)" >
+          <ion-option *ngFor="let item of goodsReceivingData.flowDocumentData.sessionData.availableFlowConnections" value="{{item.connection.guid}}">{{item.connection.name}}</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>{{'CHOOSE_TO_NODE_ROLE' | translate}}</ion-label>
+        <ion-select 
+          [(ngModel)]="goodsReceivingData.flowDocumentData.selectedPaticipantGuid"
+          (ionChange)="selectedRoleChanged($event)">
+          <ion-option *ngFor="let item of potentialPaticipants" value="{{item.PaticipantObj.guid}}">{{item.PaticipantObj.name}}</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item [(ngModel)]="goodsReceivingData.flowDocumentData.remarkOfAprrover">
+        <ion-label stacked>{{'REMARK_OF_APPROVER' | translate}}</ion-label>
+        <ion-textarea></ion-textarea>
+      </ion-item>
+
+    </ion-list>
+      <button ion-button round 
+      [disabled]="!isValidForSubmitExamineFlowAction"
+      (click)="onSubmitExamineFlowAction()">
+      {{'SUBMIT_BUTTON' | translate}}
+      </button>
+
+      <button ion-button round color="danger" 
+      (click)="onAskSubmitRejectToStartFlowAction()">
+      {{'REJECT_BUTTON' | translate}}
+      </button>
+  </div>  
+</ion-content>
