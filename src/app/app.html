@@ -7,25 +7,52 @@
 
   <ion-content>
     <ion-list>
-      <button menuClose ion-item (click)="openPage(loginPage)">
+
+      <button menuClose ion-item (click)="openPage(loginPage)" *ngIf="!userService._user">
+        <ion-icon name="home" style="vertical-align:bottom;"></ion-icon>
         {{"LOGIN" | translate}}
       </button>
 
-      <button menuClose ion-item (click)="openPage(flowtasksPage)">
+      <button menuClose ion-item (click)="openPage(internalAddressbookPage)"
+      *ngIf="userService._user">
+        <ion-icon name="contacts" color="primary"></ion-icon>
+        {{"INTERNAL_ADDRESSBOOK" | translate}}
+      </button>
+
+      <button menuClose ion-item (click)="openPage(flowtasksPage)"
+      *ngIf="userService._user">
+        <ion-icon name="bonfire" color="primary"></ion-icon>
         {{"FLOW_TASK" | translate}}
+        <ion-badge item-right color="danger">1</ion-badge>
       </button>
 
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
         {{p.title}}
       </button>
 
+      <button menuClose ion-item (click)="openPage(sysSettingPage)">
+        <ion-icon name="settings"></ion-icon>
+        {{"SYSTEM_SETTING" | translate}}
+      </button>  
+
       <button menuClose ion-item (click)="toggleLanguage()">
+        <ion-icon name="globe"></ion-icon>
         English-中文
       </button>
 
-      <button menuClose ion-item (click)="openPage(sysSettingPage)">
-        {{"SYSTEM_SETTING" | translate}}
-      </button>  
+      <button menuClose ion-item (click)="logout()" *ngIf="userService._user">
+        <ion-icon name="exit"></ion-icon>
+        {{"LOGOUT" | translate}} 
+        {{userService._user.userDisplayName}}  
+        ( {{userService._user.userLogonName}} )
+      </button>
+
+      <button menuClose ion-item (click)="callSupport()">
+        <ion-icon name="call"></ion-icon>
+        {{"CALL_SUPPORT" | translate}}
+        <ion-badge item-right>?</ion-badge>        
+      </button>
+
     </ion-list>
   </ion-content>
 

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams,LoadingController } from 'ionic-angular';
-import { Observable } from 'rxjs';
 import { TranslateService } from 'ng2-translate/ng2-translate';
 
 import { FlowTaskData } from '../../models/BasicObjects';

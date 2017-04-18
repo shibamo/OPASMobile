@@ -1,72 +1,58 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, RequestOptions, Headers } from '@angular/http';
+
 import { Api } from './api';
+import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/observable/of';
 import { Storage } from '@ionic/storage';
 
-import { UserData } from '../models/BasicObjects';
+import { UserData,UserDTO } from '../models/BasicObjects';
 
 @Injectable()
 export class UserService {
   _user: UserData;
   _authenticationToken: string;
+  _allUsers: UserDTO[];
 
   constructor(
     public http: Http, 
     public api: Api, 
     public storage: Storage) 
   {
-    storage.keys().then(
-      (_keys) => {
-        if (_keys.indexOf("authenticationToken") >= 0) {
-          console.log("authenticationToken in storage");
-          storage.get("authenticationToken").then((data) => {
-            this._authenticationToken = data.toString();
-            console.log(data);
-          });
-        }
-        else {
-          console.log("authenticationToken not in storage");
-        }
-
-        if (_keys.indexOf("user") >= 0) {
-          console.log("user in storage");
-          storage.get("user").then((data) => {
-            this._user = data;
-            console.log(data);
-          });
-        }
-        else {
-          console.log("user not in storage");
-        }
-      });
+    this.getStoredState();
   }
 
   getStoredState(){
     this.storage.keys().then(
       (_keys) => {
         if (_keys.indexOf("authenticationToken") >= 0) {
-          console.log("authenticationToken in storage");
           this.storage.get("authenticationToken").then((data) => {
             this._authenticationToken = data.toString();
-            console.log(data);
           });
         }
         else {
-          console.log("authenticationToken not in storage");
+          console.debug("authenticationToken not in storage");
         }
 
         if (_keys.indexOf("user") >= 0) {
-          console.log("user in storage");
           this.storage.get("user").then((data) => {
             this._user = data;
-            console.log(data);
           });
         }
         else {
-          console.log("user not in storage");
+          console.debug("user not in storage");
         }
+
+        if (_keys.indexOf("allUsers") >= 0) {
+          this.storage.get("allUsers").then((data) => {
+            this._allUsers = data;
+          });
+        }
+        else {
+          console.debug("allUsers not in storage");
+        }        
       }
     );
   }
@@ -77,7 +63,7 @@ export class UserService {
     seq.map(res => res.json())
       .subscribe(res => {
         // If the API returned a successful response, mark the user as logged in
-        console.log(res);
+        console.debug(res);
         if (res.status == 'success') {
           this._loggedIn(res);
         } else {
@@ -92,6 +78,8 @@ export class UserService {
   logout() {
     this._user = null;
     this._authenticationToken = null;
+    this.storage.remove("authenticationToken");
+    this.storage.remove("user");
   }
 
   _loggedIn(resp) {
@@ -99,5 +87,29 @@ export class UserService {
     this._authenticationToken = this._user.authenticationToken;
     this.storage.set("authenticationToken", this._user.authenticationToken);
     this.storage.set("user", this._user);
+  }
+
+  getAllUsers(reload = false) : Observable<UserDTO[]>
+  {
+    if(!reload && this._allUsers) {
+      return Observable.of(this._allUsers);
+    }
+    let headers = new Headers({ 
+      'Authentication-Info': this._authenticationToken });
+    let options = new RequestOptions({ headers: headers });
+
+    return this.api.get(
+      'UserApi', 
+      null, 
+      options)
+    .map(res => {
+      this._allUsers = res.json() as UserDTO[];
+      this.storage.set("allUsers", this._allUsers);
+      return this._allUsers;
+    })
+    .catch(error => {
+      console.error(error);
+      return Observable.of<UserDTO[]>([]);
+    });
   }
 }

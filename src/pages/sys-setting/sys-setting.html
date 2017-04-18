@@ -1,12 +1,27 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{SYSTEM_SETTING | translate}}</ion-title>
+    <ion-title>{{'SYSTEM_SETTING' | translate}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-label stacked>{{'API_ADDRESS' | translate}} (http://localhost:24544/api)</ion-label>
+      <ion-input [(ngModel)]="apiAddress">
+      </ion-input>
+    </ion-item>
 
+  </ion-list>
+
+  <button ion-button round (click)="testConnection()">
+    {{'TEST' | translate}}
+  </button>
+
+  <button ion-button round (click)="storeSetting()">
+    {{'SAVE' | translate}}
+  </button>
 </ion-content>

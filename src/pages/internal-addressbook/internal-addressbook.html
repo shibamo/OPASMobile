@@ -1,0 +1,89 @@
+<!--
+  Generated template for the InternalAddressbook page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{'INTERNAL_ADDRESSBOOK' | translate}}</ion-title>
+  </ion-navbar>
+
+  <!--<ion-segment [(ngModel)]="Category">
+    <ion-segment-button value="Name">
+      {{'BY_NAME' | translate}}
+    </ion-segment-button>
+    <ion-segment-button value="Department">
+      {{'BY_DEPARTMENT' | translate}}
+    </ion-segment-button>
+    <ion-segment-button value="Role">
+      {{'BY_ROLE' | translate}}
+    </ion-segment-button>
+  </ion-segment>-->
+
+</ion-header>
+
+
+<ion-content [ngSwitch]="Category">
+  <ion-searchbar (ionInput)="showAddressBook($event)" [(ngModel)]="searchKeyword"></ion-searchbar>
+  <ion-list *ngSwitchCase="'Name'">
+
+    <ion-item-group *ngFor="let userGroup of sortedUserGroups">
+      <ion-item-divider color="light" text-center><b>{{userGroup.captial}}</b></ion-item-divider>
+      <ion-item-sliding *ngFor="let _user of userGroup.users">
+        <ion-item>
+          {{_user.logonName}} - {{_user.name}} ({{_user.defaultDepartmentName}})
+        </ion-item>
+        <ion-item-options side="right">
+          <button ion-button color="primary">
+            <ion-icon name="call"></ion-icon>
+            Call
+          </button>
+          <button ion-button color="secondary">
+            <ion-icon name="mail"></ion-icon>
+            Email
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-item-group>
+
+    <!--<ion-item-group>
+      <ion-item-divider color="light">B</ion-item-divider>
+
+      <ion-item-sliding>
+        <ion-item>
+          BBBBB
+        </ion-item>
+        <ion-item-options side="right">
+          <button ion-button color="primary">
+            <ion-icon name="call"></ion-icon>
+            Call
+          </button>
+          <button ion-button color="secondary">
+            <ion-icon name="mail"></ion-icon>
+            Email
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+      <ion-item>Angola</ion-item>
+      <ion-item>Argentina</ion-item>
+    </ion-item-group>    -->
+  </ion-list>
+
+
+  <!--<ion-list *ngSwitchCase="'Department'">
+    <ion-item >
+      Department
+    </ion-item>
+  </ion-list>
+  <ion-list *ngSwitchCase="'Role'">
+    <ion-item >
+      Role
+    </ion-item>
+  </ion-list>    -->
+
+</ion-content>

@@ -9,6 +9,7 @@ import { Page1 } from '../pages/page1/page1';
 //import { Page2 } from '../pages/page2/page2';
 import { LoginPage } from '../pages/login/login';
 import { SysSettingPage } from '../pages/sys-setting/sys-setting';
+import { InternalAddressbookPage } from '../pages/internal-addressbook/internal-addressbook';
 import { FlowtasksPage } from '../pages/flowtasks/flowtasks';
 
 import { UserService } from '../providers/userService';
@@ -25,11 +26,17 @@ export class MyApp {
   pages: Array<{title: string, component: any}>;
 
   loginPage: any = {
-    title: 'Login to OPAS',  component:LoginPage};
+    title: 'Login to OPAS',  component:LoginPage
+  };
   flowtasksPage: any = {
-    title: 'Flow Tasks',  component:FlowtasksPage};
+    title: 'Flow Tasks',  component:FlowtasksPage
+  };
   sysSettingPage: any = {
-    title: 'Flow Tasks',  component:SysSettingPage};    
+    title: 'Flow Tasks',  component:SysSettingPage
+  };
+  internalAddressbookPage: any = {
+    title: 'Addess Book',  component:InternalAddressbookPage
+  };      
 
   translator: TranslateService;
   currentLanguage: string;
@@ -80,7 +87,15 @@ export class MyApp {
   toggleLanguage(){
     this.currentLanguage = (this.currentLanguage== 'en'?  'cn' : 'en');
     this.translator.use(this.currentLanguage);
-    
+  
+  }
+
+  logout(){
+    this.userService.logout();
+  }
+
+  callSupport(){
+
   }
 
   getTasks(){

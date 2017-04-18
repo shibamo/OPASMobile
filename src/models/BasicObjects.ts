@@ -6,6 +6,7 @@ export interface DTO {
 
 export interface UserDTO extends DTO {
   userId: number;
+  name: string;
   displayName: string;
   englishName: string;
   code: string;

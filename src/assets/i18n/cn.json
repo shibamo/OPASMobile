@@ -1,12 +1,15 @@
 {
   "MENU": "菜单",
   "BACK_BUTTON_TEXT" : "回退",
+  "SAVE" : "保存",  
+  "CALL_SUPPORT" : "拨打支持电话",
 
   "NAME": "名称",
   "EMAIL": "电子邮件",
   "USERNAME": "用户名",
   "PASSWORD": "密码",
   "LOGIN": "登录",
+  "LOGOUT": "注销",
   "FLOW_TASK": "流程任务",
   "FORM": "文档",
   "FILES": "文件",
@@ -15,7 +18,8 @@
   "CHOOSE_TO_NODE_ROLE": "请选择下一步操作的执行者",
   "PLEASE_WAIT": "请等待...",
   "SUCCESSFULLY_SUBMITTED": "已成功提交",
-  "OPERATION_FAILED": "操作失败",  
+  "OPERATION_FAILED": "操作失败",
+  "SUCCESSFULLY_CONNECTED": "已成功连接",  
 
   "LOGIN_TITLE": "登录OPAS",
   "LOGIN_BUTTON": "登 录",
@@ -24,6 +28,8 @@
   "REMARK_OF_APPROVER": "审批意见",
 
   "SYSTEM_SETTING": "系统设置",
+  "API_ADDRESS": "服务地址",   
+  "TEST": "测试",   
 
   "PURCHASE_REQUISITION": "采购申请",
   "ITEM_TYPE": "项目类型",
@@ -45,5 +51,10 @@
 
   "PAYMENT": "付款",
 
-  "DETAIL_TABLE": "明细表"
+  "DETAIL_TABLE": "明细表",
+
+  "INTERNAL_ADDRESSBOOK" : "内部通讯录",
+  "BY_NAME": "按姓名",
+  "BY_DEPARTMENT": "按部门", 
+  "BY_ROLE": "按角色"   
 }

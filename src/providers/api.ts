@@ -5,7 +5,8 @@ import { Storage } from '@ionic/storage';
 
 @Injectable()
 export class Api {
-  url: string = 'http://localhost:24544/api';
+  private url: string = 'http://localhost:24544/api';
+
   public PR_NEXT_FLOW_ACTION_PATH = "/PR/ExamineFlowAction/" ;
   public PR_REJECT_TO_START_FLOW_ACTION_PATH = "/PR/RejectToStartFlowAction/" ;
 
@@ -19,6 +20,10 @@ export class Api {
   public PM_REJECT_TO_START_FLOW_ACTION_PATH = "/PM/RejectToStartFlowAction/" ;
 
   constructor(public http: Http,public storage: Storage) {
+  }
+
+  public setUrl(url: string){
+    this.url = url;
   }
 
   get(endpoint: string, params?: any, options?: RequestOptions) {

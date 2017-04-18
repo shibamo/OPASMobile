@@ -9,6 +9,7 @@ import { Page1 } from '../pages/page1/page1';
 import { Page2 } from '../pages/page2/page2';
 import { LoginPage } from '../pages/login/login';
 import { SysSettingPage } from '../pages/sys-setting/sys-setting';
+import { InternalAddressbookPage } from '../pages/internal-addressbook/internal-addressbook';
 import { FlowtasksPage } from '../pages/flowtasks/flowtasks';
 import { FlowtaskPrPage } from '../pages/flowtask-pr/flowtask-pr';
 import { FlowtaskPoPage } from '../pages/flowtask-po/flowtask-po';
@@ -40,6 +41,7 @@ export function createTranslateLoader(http: Http) {
     Page2,
     LoginPage,
     SysSettingPage,
+    InternalAddressbookPage,
     FlowtasksPage,
     FlowtaskPrPage,
     FlowtaskPoPage,
@@ -69,6 +71,7 @@ export function createTranslateLoader(http: Http) {
     Page2,
     LoginPage,
     SysSettingPage,
+    InternalAddressbookPage,
     FlowtasksPage,
     FlowtaskPrPage,
     FlowtaskPoPage,
