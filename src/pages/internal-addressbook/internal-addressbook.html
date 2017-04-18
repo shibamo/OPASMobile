@@ -29,7 +29,7 @@
 
 
 <ion-content [ngSwitch]="Category">
-  <ion-searchbar (ionInput)="showAddressBook($event)" [(ngModel)]="searchKeyword"></ion-searchbar>
+  <ion-searchbar (ionInput)="showAddressBook($event)" [(ngModel)]="searchKeyword" placeholder="Search / 搜索"></ion-searchbar>
   <ion-list *ngSwitchCase="'Name'">
 
     <ion-item-group *ngFor="let userGroup of sortedUserGroups">
@@ -41,11 +41,9 @@
         <ion-item-options side="right">
           <button ion-button color="primary">
             <ion-icon name="call"></ion-icon>
-            Call
           </button>
           <button ion-button color="secondary">
             <ion-icon name="mail"></ion-icon>
-            Email
           </button>
         </ion-item-options>
       </ion-item-sliding>

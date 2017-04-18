@@ -3,7 +3,8 @@ import { NavController, ToastController } from 'ionic-angular';
 
 import { TranslateService } from 'ng2-translate/ng2-translate';
 
-import { Page1 } from '../page1/page1';
+//import { Page1 } from '../page1/page1';
+import { InternalAddressbookPage } from '../../pages/internal-addressbook/internal-addressbook';
 import { UserService } from '../../providers/userService';
 
 @Component({
@@ -35,9 +36,11 @@ export class LoginPage {
   // Attempt to login in through our User service
   doLogin() {
     this.user.login(this.account).subscribe((resp) => {
-      this.navCtrl.push(Page1);
+
+      this.navCtrl.push(InternalAddressbookPage);
+      this.navCtrl.remove(0);
     }, (err) => {
-      this.navCtrl.push(Page1);
+      this.navCtrl.push(InternalAddressbookPage);
       // Unable to log in
       let toast = this.toastCtrl.create({
         message: this.loginErrorString,

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {
   NavController, NavParams, LoadingController,
-  AlertController, ToastController
+  AlertController, ToastController,ViewController
 } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
@@ -25,6 +25,7 @@ export class InternalAddressbookPage {
 
   constructor(
     public navCtrl: NavController,
+    public viewCtrl: ViewController,
     public navParams: NavParams,
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,
@@ -41,6 +42,7 @@ export class InternalAddressbookPage {
         this.users = value;
         this.showAddressBook(null);
       });
+    this.viewCtrl.showBackButton(false);
   }
 
   showAddressBook($event) {

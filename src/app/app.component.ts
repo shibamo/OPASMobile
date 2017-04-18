@@ -21,7 +21,7 @@ import { FlowTaskService } from '../providers/flowtaskService';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = Page1;
+  rootPage: any = InternalAddressbookPage;
 
   pages: Array<{title: string, component: any}>;
 
@@ -74,6 +74,11 @@ export class MyApp {
 
       this.userService.getStoredState();
       // this.flowTaskService.getTasks(true);
+      if(this.userService._user){
+        this.rootPage = InternalAddressbookPage;
+      } else {
+        this.rootPage = LoginPage;
+      }
 
     });
   }
